@@ -85,26 +85,29 @@ dashboard() {
     echo
     service_monitor
 }
-read full
-case $full in
-    a)top_aps;;
-    b)network_motnitor;;
+if [ "$#" -eq 0 ]; then
+    dashboard
+    echo " "
+    echo " "
+    option
+fi
+
+read choice
+case $choice in
+    a)top_apps;;
+    b)network_monitor;;
     c)disk_usage;;
     d)system_load;;
     e)memory_usage;;
     f)process_monitor;;
     g)service_monitor;;
-    *)echo "please input valid input
+    *)echo "please input valid input"
     esac
-# Default to full dashboard if no switches are provided
-if [ "$#" -eq 0 ]; then
-    dashboard
-    option
-fi
+# Default to full dashboard if no switches are provide
 
 
 
 ________________________________________________________________________________________________________________
 Save the script to a file, e.g., monitor.sh.
 Make the script executable: chmod +x monitor.sh.
-Run the script with the desired switch, e.g., ./monitor.sh -cpu to view CPU usage.
+Run the script with the desired switch, e.g., ./monitor.sh 
