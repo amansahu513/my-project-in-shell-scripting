@@ -1,5 +1,17 @@
 #!/bin/bash
 
+option() {
+    echo "System Monitoring Dashboard"
+    echo "==========================="
+    echo "a for top apps"
+    echo "b for network monitor"
+    echo "c for disk usage"
+    echo "e for system load"
+    echo "f for memory usage"
+    echo "g for process monitor"
+    }
+
+
 # Function to display top 10 applications consuming the most CPU and memory
 top_apps() {
     echo "Top 10 Applications by CPU and Memory Usage:"
@@ -73,33 +85,21 @@ dashboard() {
     echo
     service_monitor
 }
-
-# Command-line switches
-while [[ "$1" != "" ]]; do
-    case $1 in
-        -cpu ) top_apps
-               ;;
-        -network ) network_monitor
-                   ;;
-        -disk ) disk_usage
-                ;;
-        -load ) system_load
-                ;;
-        -memory ) memory_usage
-                  ;;
-        -process ) process_monitor
-                   ;;
-        -service ) service_monitor
-                   ;;
-        * ) dashboard
-            ;;
+read full
+case $full in
+    a)top_aps;;
+    b)network_motnitor;;
+    c)disk_usage;;
+    d)system_load;;
+    e)memory_usage;;
+    f)process_monitor;;
+    g)service_monitor;;
+    *)echo "please input valid input
     esac
-    shift
-done
-
 # Default to full dashboard if no switches are provided
 if [ "$#" -eq 0 ]; then
     dashboard
+    option
 fi
 
 
